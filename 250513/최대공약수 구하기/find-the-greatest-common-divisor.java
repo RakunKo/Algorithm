@@ -7,7 +7,7 @@ public class Main {
         int m = sc.nextInt();
         // Please write your code here.
         int result = 0;
-        for(int i=2;i<=n;i++) {
+        for(int i=1;i<=n;i++) {
             if(n % i == 0 && m % i == 0)result = i;
         }
         System.out.print(result);
