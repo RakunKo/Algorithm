@@ -7,11 +7,10 @@ public class Main {
         {{0,0},{-1,0},{0,1}},
         {{0,0},{1,0},{0,-1}}
     };
+    //일자 모형은 위로 탐색은 필요없다 -> 어차피 밑에서 하게 됨
     static int[][][] trom2 = {
         {{0,0},{1,0},{2,0}},
-        {{0,0},{-1,0},{-2,0}},
         {{0,0},{0,1},{0,2}},
-        {{0,0},{0,-1},{0,-2}},
     };
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -52,7 +51,7 @@ public class Main {
                     if(result < sum) result = sum;
                 }
 
-                for(int k=0;k<4;k++) {
+                for(int k=0;k<2;k++) {
                     int t1_x,t2_x,t3_x =0;
                     int t1_y,t2_y,t3_y =0;
                     //좌표 계산
