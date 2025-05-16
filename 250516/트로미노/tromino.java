@@ -23,6 +23,7 @@ public class Main {
                 grid[i][j] = sc.nextInt();
             }
         }
+
         int result = 0;
         // Please write your code here.
         for(int i=0;i<n;i++) {
@@ -35,17 +36,15 @@ public class Main {
                     t1_x = i + trom1[k][0][0];
                     t1_y = j + trom1[k][0][1];
 
-
                     t2_x = i + trom1[k][1][0];
                     t2_y = j + trom1[k][1][1];
-
 
                     t3_x = i + trom1[k][2][0];
                     t3_y = j + trom1[k][2][1];
 
-                    if(t1_x >= n || t1_x < 0 || t1_y >=n || t1_y < 0||
-                    t2_x >= n || t2_x < 0 || t2_y >=n || t2_y < 0||
-                    t3_x >= n || t3_x < 0 || t3_y >=n || t3_y < 0) {
+                    if(t1_x >= n || t1_x < 0 || t1_y >=m || t1_y < 0||
+                    t2_x >= n || t2_x < 0 || t2_y >=m || t2_y < 0||
+                    t3_x >= n || t3_x < 0 || t3_y >=m || t3_y < 0) {
                         //범위 초과
                         continue;
                     }
@@ -60,17 +59,15 @@ public class Main {
                     t1_x = i + trom2[k][0][0];
                     t1_y = j + trom2[k][0][1];
 
-
                     t2_x = i + trom2[k][1][0];
                     t2_y = j + trom2[k][1][1];
-
 
                     t3_x = i + trom2[k][2][0];
                     t3_y = j + trom2[k][2][1];
 
-                    if(t1_x >= n || t1_x < 0 || t1_y >=n || t1_y < 0||
-                    t2_x >= n || t2_x < 0 || t2_y >=n || t2_y < 0||
-                    t3_x >= n || t3_x < 0 || t3_y >=n || t3_y < 0) {
+                    if(t1_x >= n || t1_x < 0 || t1_y >=m || t1_y < 0||
+                    t2_x >= n || t2_x < 0 || t2_y >=m || t2_y < 0||
+                    t3_x >= n || t3_x < 0 || t3_y >=m || t3_y < 0) {
                         //범위 초과
                         continue;
                     }
