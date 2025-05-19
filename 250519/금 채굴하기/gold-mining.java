@@ -29,7 +29,7 @@ public class Main {
     public static int _search(int[][] grid, int n, int m, int cx, int cy) {
         int result = 0;
         int gold = 0;
-        for(int k=0;k<=2*(n-1);k++) {
+        for(int k=0;k<2*(n-1);k++) {
             for(int i=0;i<n;i++) {
                 for (int j=0;j<n;j++) {
                     if(Math.abs(cx-i) + Math.abs(cy-j) == k) {      //테두리
