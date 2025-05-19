@@ -39,7 +39,7 @@ public class Main {
                     }
                 }
             }
-            if(k*k + (k+1)*(k+1) < gold * m ) { 
+            if(k*k + (k+1)*(k+1) <= gold * m ) { 
                 result = Math.max(result, gold);
             }
         }
