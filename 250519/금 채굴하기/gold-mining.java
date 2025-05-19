@@ -35,12 +35,12 @@ public class Main {
                     if(Math.abs(cx-i) + Math.abs(cy-j) <= k) {      //테두리
                         if(grid[i][j] == 1) {   //gold
                             gold++;
-                            if(k*k + (k+1)*(k+1) < gold * m ) { 
-                                result = Math.max(result, gold);
-                            }
                         }
                     }
                 }
+            }
+            if(k*k + (k+1)*(k+1) < gold * m ) { 
+                result = Math.max(result, gold);
             }
         }
         return result;
