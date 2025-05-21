@@ -28,33 +28,27 @@ public class Main {
         int result = 0;
         for(int i=0;i<n;i++) {
             for(int j=0;j<n;j++) {
-                int sum = 0;
-                boolean flag = false;
-                int dx = i;
-                int dy = j;
-
-                for(int k=0;k<4;k++) {
-                    int idx = 0;
-                    int tmp = 0;
-                    if(k % 2 == 0) idx = row;
-                    else idx = col;
-                    for(int h=1;h<idx;h++) {
-                        dx += dir[k][0];
-                        dy += dir[k][1];
-                        if(dx >= n || dx < 0 || dy >= n || dy < 0) {
-                            flag = true;    //이좌표에선 불가
-                            break;
-                        }
-                        sum += grid[dx][dy];
-                    }
-                    if(flag) {  //불가 -> 다음좌표
-                        break;
-                    }
-                }
-                //순회 종료
-                if(!flag) result = Math.max(result, sum);
+                int sum = sumOfDiamond(grid, row, col, n, i, j);
+                result = Math.max(result, sum);
             }
         }
         return result;
+    }
+
+    public static int sumOfDiamond(int[][] grid, int row, int col, int n, int cx, int cy) {
+        int sum = 0;
+        int dx = cx; int dy = cy;
+        for(int k=0;k<4;k++) {
+            int idx = (k%2==0) ? row : col;
+            for(int h=1;h<idx;h++) {
+                dx += dir[k][0];
+                dy += dir[k][1];
+                if(dx >= n || dx < 0 || dy >= n || dy < 0) {
+                    return 0;
+                }
+                sum += grid[dx][dy];
+            }
+        }
+        return sum;
     }
 }
