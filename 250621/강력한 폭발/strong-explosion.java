@@ -50,18 +50,17 @@ public class Main {
                     flag = true;
                 }    
             }
-            if(flag) {
+            
                 dfs(d+1, bomb+cnt, grid, n, vis);
                 for (int[] pos : marked) {
                     vis[pos[0]][pos[1]] = 0; 
                 }
-            }
         }
         return;
     }
 
-    public static boolean isRange(int dx, int dy, int n, int[][] current) {
-        if(dx<n && dx>=0 && dy<n && dy>=0 && current[dx][dy]==0) return true;
+    public static boolean isRange(int dx, int dy, int n, int[][] vis) {
+        if(dx<n && dx>=0 && dy<n && dy>=0 && vis[dx][dy]==0) return true;
         else return false;
     }
 }
