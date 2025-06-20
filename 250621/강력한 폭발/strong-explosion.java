@@ -35,7 +35,7 @@ public class Main {
         }
         int x = ones.get(d)[0];
         int y = ones.get(d)[1];
-        if (grid[x][y] == 0 || vis[x][y] == 1) return;
+        
         for(int k=0;k<3;k++) {
             List<int[]> marked = new ArrayList<>();
             int cnt =0;
