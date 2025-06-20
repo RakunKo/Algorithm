@@ -47,10 +47,10 @@ public class Main {
                             cnt++;
                             marked.add(new int[]{dx, dy});
                             vis[dx][dy]=1;
-                            flag = true
+                            flag = true;
                         }    
                     }
-                        if(flag) {
+                    if(flag) {
                         dfs(d+1, bomb+cnt, grid, n, c, vis);
                         for (int[] pos : marked) {
                             vis[pos[0]][pos[1]] = 0; 
