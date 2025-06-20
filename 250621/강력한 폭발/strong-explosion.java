@@ -9,53 +9,51 @@ public class Main {
         {{0,0},{1,1},{-1,1},{1,-1},{-1,-1}}
     };
     static int result = 0;
+    static List<int[]> ones = new ArrayList<>();
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         int[][] grid = new int[n][n];
-        int cnt = 0;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 grid[i][j] = sc.nextInt();
-                if(grid[i][j]==1) cnt++;
+                if(grid[i][j]==1) ones.add(new int[]{i,j});
             }
         }
         // Please write your code here.
         int[][] vis = new int[n][n];
-        dfs(0, 0, grid, n, cnt, vis);
+        dfs(0, 0, grid, n, vis);
         System.out.println(result);
         return;
     }
 
-    public static void dfs(int d, int bomb, int[][] grid, int n, int c, int[][] vis) {
-        if(d == c) {    //모두 폭발
+    public static void dfs(int d, int bomb, int[][] grid, int n, int[][] vis) {
+        if(d == ones.size()) {    //모두 폭발
             result = Math.max(result, bomb);
             return;
         }
-        for(int i=0;i<n;i++){
-            for(int j=0;j<n;j++) {
-                if(grid[i][j]==0) continue;
-                if(vis[i][j]==1) continue;
-                List<int[]> marked = new ArrayList<>();
-                for(int k=0;k<3;k++) {
-                    int cnt =0;
-                    boolean flag = false;
-                    for(int h=0;h<5;h++) {
-                        int dx = i+range[k][h][0];
-                        int dy = j+range[k][h][1];
-                        if(isRange(dx, dy, n, vis)) {
-                            cnt++;
-                            marked.add(new int[]{dx, dy});
-                            vis[dx][dy]=1;
-                            flag = true;
-                        }    
-                    }
-                    if(flag) {
-                        dfs(d+1, bomb+cnt, grid, n, c, vis);
-                        for (int[] pos : marked) {
-                            vis[pos[0]][pos[1]] = 0; 
-                        }
-                    }
+        int x = ones.get(d)[0];
+        int y = ones.get(d)[1];
+        if (grid[x][y] == 0 || vis[x][y] == 1) return;
+        List<int[]> marked = new ArrayList<>();
+        for(int k=0;k<3;k++) {
+            int cnt =0;
+            boolean flag = false;
+            for(int h=0;h<5;h++) {
+                int dx = x+range[k][h][0];
+                int dy = y+range[k][h][1];
+                if(isRange(dx, dy, n, vis)) {
+                    cnt++;
+                    marked.add(new int[]{dx, dy});
+                    vis[dx][dy]=1;
+                    flag = true;
+                }    
+            }
+            if(flag) {
+                dfs(d+1, bomb+cnt, grid, n, vis);
+                for (int[] pos : marked) {
+                    vis[pos[0]][pos[1]] = 0; 
                 }
             }
         }
