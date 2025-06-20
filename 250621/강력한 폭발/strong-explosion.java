@@ -1,4 +1,4 @@
-import java.util.Scanner;
+import java.util.*;
 import java.lang.Math;
 
 public class Main {
@@ -36,23 +36,22 @@ public class Main {
             for(int j=0;j<n;j++) {
                 if(grid[i][j]==0) continue;
                 if(vis[i][j]==1) continue;
+                List<int[]> marked = new ArrayList<>();
                 for(int k=0;k<3;k++) {
-                    int[][] current = new int[n][n];
-                    for (int a = 0; a < n; a++) {
-                        for (int b = 0; b < n; b++) {
-                            current[a][b] = vis[a][b];
-                        }
-                    }
                     int cnt =0;
                     for(int h=0;h<5;h++) {
                         int dx = i+range[k][h][0];
                         int dy = j+range[k][h][1];
-                        if(isRange(dx, dy, n, current)) {
+                        if(isRange(dx, dy, n, vis)) {
                             cnt++;
-                            current[dx][dy]=1;
+                            marked.add(new int[]{dx, dy});
+                            vis[dx][dy]=1;
                         }    
                     }
-                    dfs(d+1, bomb+cnt, grid, n, c, current);
+                    dfs(d+1, bomb+cnt, grid, n, c, vis);
+                    for (int[] pos : marked) {
+                        vis[pos[0]][pos[1]] = 0; 
+                    }
                 }
             }
         }
