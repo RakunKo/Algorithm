@@ -39,6 +39,7 @@ public class Main {
                 List<int[]> marked = new ArrayList<>();
                 for(int k=0;k<3;k++) {
                     int cnt =0;
+                    boolean flag = false;
                     for(int h=0;h<5;h++) {
                         int dx = i+range[k][h][0];
                         int dy = j+range[k][h][1];
@@ -46,11 +47,14 @@ public class Main {
                             cnt++;
                             marked.add(new int[]{dx, dy});
                             vis[dx][dy]=1;
+                            flag = true
                         }    
                     }
-                    dfs(d+1, bomb+cnt, grid, n, c, vis);
-                    for (int[] pos : marked) {
-                        vis[pos[0]][pos[1]] = 0; 
+                        if(flag) {
+                        dfs(d+1, bomb+cnt, grid, n, c, vis);
+                        for (int[] pos : marked) {
+                            vis[pos[0]][pos[1]] = 0; 
+                        }
                     }
                 }
             }
