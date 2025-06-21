@@ -33,6 +33,12 @@ public class Main {
                 if(vis[j]==1) flag = false;
             }
             if(flag) {  //뽑기 가능
+                //뽑기가 가능한데 이미 고를 수 있는 것이 result보다 낮다면? -> 값이 될 수 없음
+                int possible = 0;
+                for(int j=0;j<n;j++) {
+                    if(visInfo[j] ==0) possible++;
+                }
+                if(possible + cnt < result) continue;
                 for(int j=segSec;j>=segFir;j--) {
                     vis[j] = 1;
                 }
