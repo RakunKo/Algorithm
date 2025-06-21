@@ -38,7 +38,7 @@ public class Main {
                 for(int j=0;j<n;j++) {
                     if(visInfo[j] ==0) possible++;
                 }
-                if(possible + cnt < result) continue;
+                if(possible + cnt <= result) continue;
                 for(int j=segSec;j>=segFir;j--) {
                     vis[j] = 1;
                 }
