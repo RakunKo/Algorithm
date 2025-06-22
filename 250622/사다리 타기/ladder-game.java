@@ -52,7 +52,7 @@ public class Main {
     }
 
     public static int[] ladder(int n, int m, boolean[][] pos, int maxY) {
-        int[] result = new int[n+1];
+        int[] result = new int[n+2];
         for(int i=1;i<=n;i++) {
             int x = i;
             int y = 1;
