@@ -38,7 +38,8 @@ public class Main {
 
         if(depth==m) return;
         
-        for(int i=0;i<lad.size();i++) {
+        //이 선택은 순서 상관없이 한번만 선택되어야한다.
+        for(int i=depth;i<lad.size();i++) {
             if(vis[i]==1) continue; //이미 선택한 사다리면 건너뛰기
             int x = lad.get(i)[0];
             int y = lad.get(i)[1];
