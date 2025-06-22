@@ -10,7 +10,6 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
-        vis = new int[n+2];
         posFirst = new boolean[n+2][16];
         pos = new boolean[n+2][16];
         int m = sc.nextInt();
@@ -22,6 +21,7 @@ public class Main {
             posFirst[a][b]=true;
             maxY = Math.max(maxY, b);
         }
+        vis = new int[lad.size()];
         // Please write your code here.
         int[] firstResult = ladder(n, m, posFirst, maxY); 
         dfs(0, n, m, firstResult, maxY, 0);
