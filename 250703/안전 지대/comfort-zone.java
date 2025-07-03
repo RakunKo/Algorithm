@@ -37,13 +37,6 @@ public class Main {
                 result_value = answer;
                 result_k = k;
             }
-
-            //for(int i=0;i<n;i++) {
-            //    for(int j=0;j<m;j++) System.out.print(vis[i][j] + " ");
-            //    System.out.print("\n");
-            //}
-            //System.out.print(answer);
-            //System.out.print("\n");
             k++;
             answer = 0;
         }
