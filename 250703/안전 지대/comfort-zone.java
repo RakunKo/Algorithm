@@ -3,7 +3,7 @@ import java.lang.Math.*;
 
 public class Main {
     static int answer = 0;
-    static int result_k = 0;
+    static int result_k = 1;
     static int result_value = 0;
     static int[][] pos = {{1,0},{-1,0},{0,1},{0,-1}};
     static int[][] vis;
