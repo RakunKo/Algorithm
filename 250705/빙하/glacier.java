@@ -45,7 +45,7 @@ public class Main {
                     int dy = p.y + pos[i][1];
                     if(dx < 0 || dx >= n || dy < 0 || dy >= m) continue;
                     if(grid[dx][dy] == 1 || vis[dx][dy] == 1) continue;
-                    vis[p.x][p.y] = 1;
+                    vis[dx][dy] = 1;
                     q.add(new Pair(dx, dy));
                 }
             }
