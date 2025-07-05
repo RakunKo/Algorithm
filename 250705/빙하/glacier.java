@@ -37,14 +37,15 @@ public class Main {
             vis = new int[n][m];
             q.clear();
             q.add(new Pair(0,0));
+            vis[0][0] = 1;
             while(!q.isEmpty()) {
                 Pair p = q.poll();
-                vis[p.x][p.y] = 1;
                 for(int i=0;i<4;i++) {
                     int dx = p.x + pos[i][0];
                     int dy = p.y + pos[i][1];
                     if(dx < 0 || dx >= n || dy < 0 || dy >= m) continue;
                     if(grid[dx][dy] == 1 || vis[dx][dy] == 1) continue;
+                    vis[p.x][p.y] = 1;
                     q.add(new Pair(dx, dy));
                 }
             }
