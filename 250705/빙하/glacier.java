@@ -48,8 +48,8 @@ public class Main {
                     q.add(new Pair(dx, dy));
                 }
             }
-
-            List<Pair> toMelt = new ArrayList<>();
+            
+            int cnt =0;
             for(int i=0; i<n; i++) {
                 for(int j=0; j<m; j++) {
                     if(grid[i][j] == 1) {
@@ -58,18 +58,16 @@ public class Main {
                             int ny = j + pos[d][1];
                             if(nx < 0 || nx >= n || ny < 0 || ny >= m) continue;
                             if(vis[nx][ny] == 1) { // 외부 물과 연결된 물
-                                toMelt.add(new Pair(i,j));
+                                grid[i][j] = 0;
+                                cnt++;
                                 break;
                             }
                         }
                     }
                 }
             }
-
-            if(toMelt.size() == 0) break; // 더 이상 녹일 얼음 없음
-            for(Pair p : toMelt) grid[p.x][p.y] = 0;
-            
-            answer = toMelt.size();
+            if(cnt ==0) break;
+            answer = cnt;
             sec++;
         }
         return sec;
