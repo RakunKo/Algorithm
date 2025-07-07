@@ -42,13 +42,6 @@ public class Main {
         for(int i=0;i<k;i++) result += sizeList.get(i);
 
         System.out.print(result);
-        
-        //for(List<Pair> l: countryList) {
-        //    for(Pair p : l) {
-        //        System.out.print(p.x + ","+ p.y+ " ");
-        //    }
-        //    System.out.print("\n");
-        //}
     }
 
     public static void bfs(int[][] grid, int n, int x, int y, int u, int d) {
