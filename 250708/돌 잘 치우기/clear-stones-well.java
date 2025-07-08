@@ -43,7 +43,6 @@ public class Main {
     public static void bfs(int[][] grid, int n, int x, int y) {
         while(!q.isEmpty()) {
             Pair p = q.poll();
-            vis_bfs[p.x][p.y] = 1;
             for(int i=0;i<4;i++) {
                 int dx = p.x + dir[i][0];
                 int dy = p.y + dir[i][1];
@@ -53,6 +52,7 @@ public class Main {
                 if(vis_bfs[dx][dy] == 1)continue;
 
                 q.add(new Pair(dx, dy));
+                vis_bfs[p.x][p.y] = 1;
             }
         }
     }
