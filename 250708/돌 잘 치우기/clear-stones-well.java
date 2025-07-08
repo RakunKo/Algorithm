@@ -52,7 +52,7 @@ public class Main {
                 if(vis_bfs[dx][dy] == 1)continue;
 
                 q.add(new Pair(dx, dy));
-                vis_bfs[p.x][p.y] = 1;
+                vis_bfs[dx][dy] = 1;
             }
         }
     }
