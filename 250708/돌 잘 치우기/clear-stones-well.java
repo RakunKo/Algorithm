@@ -21,9 +21,11 @@ public class Main {
         int k = sc.nextInt();
         int m = sc.nextInt();
         int[][] grid = new int[n][n];
+        int stone = 0;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 grid[i][j] = sc.nextInt();
+                if(grid[i][j]==1) stone++;
             }
         }
         int[][] startPoints = new int[k][2];
@@ -32,6 +34,7 @@ public class Main {
             startPoints[i][1] = sc.nextInt()-1;
         }
         // Please write your code here.
+        if(stone > 8) m =8;
         vis_dfs = new int[n][n];
         dfs(0,grid, n,m,startPoints,k,0,0);
         System.out.print(answer);
