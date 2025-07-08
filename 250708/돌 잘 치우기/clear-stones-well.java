@@ -34,13 +34,14 @@ public class Main {
             startPoints[i][1] = sc.nextInt()-1;
         }
         // Please write your code here.
-        if(stone > 8) m =8;
+        if(stone > 8) m = 8;
         vis_dfs = new int[n][n];
         dfs(0,grid, n,m,startPoints,k,0,0);
         System.out.print(answer);
     }
 
-    public static void bfs(int[][] grid, int n, int x, int y) {
+    public static int bfs(int[][] grid, int n, int x, int y) {
+        int cnt = 0;
         while(!q.isEmpty()) {
             Pair p = q.poll();
             vis_bfs[p.x][p.y] = 1;
@@ -55,7 +56,7 @@ public class Main {
                 q.add(new Pair(dx, dy));
             }
         }
-        return;
+        return cnt;
     }
 
     public static int countMove(int[][] vis, int n) {
@@ -71,13 +72,15 @@ public class Main {
     public static void dfs(int depth, int[][] grid, int n, int m, int[][] startPoints, int k, int x, int y) {
         if(depth == m) {
             vis_bfs = new int[n][n];
+            int s= 0;
             for(int i=0;i<k;i++) {
                 if(vis_bfs[startPoints[i][0]][startPoints[i][1]]==1)continue;
                 q.add(new Pair(startPoints[i][0], startPoints[i][1]));
-                bfs(grid, n, startPoints[i][0], startPoints[i][1]);
-                answer = Math.max(countMove(vis_bfs,n), answer);
+                int cnt = bfs(grid, n, startPoints[i][0], startPoints[i][1]);
+                s += cnt;
             }
 
+            answer = Math.max(countMove(vis_bfs,n), answer);
         }
         for(int i=x;i<n;i++) {
             int j;
