@@ -41,7 +41,6 @@ public class Main {
     }
 
     public static int bfs(int[][] grid, int n, int x, int y) {
-        int cnt = 0;
         while(!q.isEmpty()) {
             Pair p = q.poll();
             vis_bfs[p.x][p.y] = 1;
@@ -56,7 +55,6 @@ public class Main {
                 q.add(new Pair(dx, dy));
             }
         }
-        return cnt;
     }
 
     public static int countMove(int[][] vis, int n) {
@@ -72,14 +70,11 @@ public class Main {
     public static void dfs(int depth, int[][] grid, int n, int m, int[][] startPoints, int k, int x, int y) {
         if(depth == m) {
             vis_bfs = new int[n][n];
-            int s= 0;
             for(int i=0;i<k;i++) {
                 if(vis_bfs[startPoints[i][0]][startPoints[i][1]]==1)continue;
                 q.add(new Pair(startPoints[i][0], startPoints[i][1]));
-                int cnt = bfs(grid, n, startPoints[i][0], startPoints[i][1]);
-                s += cnt;
+                bfs(grid, n, startPoints[i][0], startPoints[i][1]);
             }
-
             answer = Math.max(countMove(vis_bfs,n), answer);
         }
         for(int i=x;i<n;i++) {
