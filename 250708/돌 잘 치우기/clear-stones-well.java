@@ -40,7 +40,7 @@ public class Main {
         System.out.print(answer);
     }
 
-    public static int bfs(int[][] grid, int n, int x, int y) {
+    public static void bfs(int[][] grid, int n, int x, int y) {
         while(!q.isEmpty()) {
             Pair p = q.poll();
             vis_bfs[p.x][p.y] = 1;
