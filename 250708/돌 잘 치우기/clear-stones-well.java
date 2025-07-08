@@ -78,10 +78,7 @@ public class Main {
             answer = Math.max(countMove(vis_bfs,n), answer);
         }
         for(int i=x;i<n;i++) {
-            int j;
-            if(i==x) j = y+1;
-            else j=0;
-            for(;j<n;j++) {
+            for(int j = (i == x ? y : 0);j<n;j++) {
                 if(grid[i][j] == 0) continue;
                 vis_dfs[i][j] = 1;
                 dfs(depth+1, grid, n,m,startPoints,k,i,j);
