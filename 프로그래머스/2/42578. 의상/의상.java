@@ -10,14 +10,7 @@ class Solution {
         
         for(String[] cloth: clothes) hm.put(cloth[1], hm.getOrDefault(cloth[1] , 0)+1);
         
-        for (Integer value : hm.values()) {
-            if(item - value == 0) return item;
-            answer *= (value + 1);
-        }
-        
-        // head - 2  -> 3
-        // eye - 1 -> 2
-        
+        for (Integer value : hm.values()) answer *= (value + 1);
         
         return answer-1;
     }
