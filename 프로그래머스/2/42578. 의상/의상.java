@@ -4,7 +4,6 @@ import java.lang.Math.*;
 class Solution {
     public int solution(String[][] clothes) {
         int answer = 1;
-        int item = clothes.length;
         
         HashMap<String, Integer> hm = new HashMap<>();
         
