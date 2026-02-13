@@ -1,43 +1,30 @@
 import java.util.*;
 
 class Solution {
-    class Truck {
-        int weight;
-        int time;
-        public Truck(int weight, int time) {
-            this.weight = weight;
-            this.time = time;
-        }
-    }
     
     public int solution(int bridge_length, int weight, int[] truck_weights) {
+        //항상 bridge_length 개수만큼 크기 유지
         Queue<Integer> q = new LinkedList<>();
-        Queue<Truck> c = new LinkedList<>();
         
-        for(int wi: truck_weights) q.offer(wi);
+        for(int i=0;i<bridge_length;i++) q.offer(0);
         
-        int time = 1;
-        int w = q.poll();
-        c.offer(new Truck(w, time));
-        int currentWeight = w;
+        int index = 0;
+        int currentWeight = 0;
+        int time = 0;
         
-        
-        while(!c.isEmpty()) {
+        while(index < truck_weights.length) {
             time++;
             
-            if(time - c.peek().time == bridge_length) {
-                currentWeight -= c.poll().weight;
-            }
+            currentWeight -= q.poll();
             
-            if(!q.isEmpty()) {
-                if(c.size() + 1 <= bridge_length && currentWeight + q.peek() <= weight) {
-                    int wig = q.poll();
-                    c.offer(new Truck(wig, time));
-                    currentWeight += wig;
-                }
-            }
+            if(currentWeight + truck_weights[index] <= weight) {
+                currentWeight += truck_weights[index];
+                q.offer(truck_weights[index]);
+                index++;
+            } 
+            else q.offer(0);
         }
         
-        return time;
+        return time + bridge_length;
     }
 }
