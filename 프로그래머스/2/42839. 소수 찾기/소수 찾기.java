@@ -4,19 +4,21 @@ class Solution {
     int[] visIdx = new int[7];
     
     public int solution(String numbers) {
-        dfs(0, numbers.toCharArray(), "0");
+        dfs(0, numbers.toCharArray(), "");
         return cnt;
     }
     
     public void dfs(int d, char[] chars, String number) {
         if(d > chars.length) return;
         
-        int n = Integer.parseInt(number);
-        System.out.println(n);
-        if(vis[n] == 1) return;
-        if(isPrime(n)) cnt++;
+        if (!number.equals("")) {
+            int n = Integer.parseInt(number);
+            if(vis[n] == 0) {
+                if (isPrime(n)) cnt++;
+                vis[n] =1;
+            }
+        }
     
-        vis[n] = 1;
         for(int i=0;i<chars.length;i++) {
             if(visIdx[i] == 1) continue;
             int num = chars[i] - '0';
@@ -30,7 +32,7 @@ class Solution {
         if(num == 1 || num == 0) return false;
         if(num == 2) return true;
         
-        for(int i=2;i<num/2+1;i++) {
+        for(int i=2;i * i <= num;i++) {
             if(num % i == 0) return false;
         }
         return true;
