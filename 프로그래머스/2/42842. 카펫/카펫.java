@@ -20,13 +20,7 @@ class Solution {
     
     public boolean isPossible(int width, int height, int yellow) {
         if(height == 1 || height ==2) return false;
-        
-        for(int i=1;i<=yellow/2 + 1;i++) {
-            if(yellow % i != 0) continue;
-            
-            int w = yellow / i;
-            if(width - 2 >= w && height - 2 >= i) return true;
-        }
+        if((width - 2)*(height - 2) == yellow) return true;
         
         return false;
     }
