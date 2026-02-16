@@ -1,0 +1,1 @@
+select count(*)m from ANIMAL_INS
