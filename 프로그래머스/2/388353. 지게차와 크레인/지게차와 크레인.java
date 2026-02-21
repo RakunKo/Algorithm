@@ -50,7 +50,10 @@ class Solution {
         }
         else {
             boolean[][] outside =  new boolean[h+2][w+2];
+            boolean[][] willRemove = new boolean[h+2][w+2];
             Queue<Pos> q = new LinkedList<>();
+            List<Pos> removeList = new ArrayList<>();
+
             q.offer(new Pos(0,0));
             outside[0][0] = true;
             
@@ -63,27 +66,24 @@ class Solution {
                     
                     if(dx < 0 || dx >= h+2 || dy < 0 || dy >= w+2) continue;
                     if(outside[dx][dy]) continue;
-                    if(containers[dx][dy] >= 'A' && containers[dx][dy] <= 'Z') continue;
+                    if(containers[dx][dy] >= 'A' && containers[dx][dy] <= 'Z') {
+                        if(containers[dx][dy] == c) {
+                            removeList.add(new Pos(dx, dy));
+                            willRemove[dx][dy] = true;
+                        }
+                        continue;
+                    }
                     
                     q.offer(new Pos(dx, dy));
                     outside[dx][dy] = true;
                 }
             }
             
-            for(int i=0;i<=h+1;i++) {
-                for(int j=0;j<=w+1;j++) {
-                    if(outside[i][j]) {
-                        for(int k=0;k<4;k++) {
-                            int di = i + dir[k][0];
-                            int dj = j + dir[k][1];
-                            
-                            if(di < 0 || di >= h+2 || dj < 0 || dj >= w+2) continue;
-                            if(outside[di][dj]) continue;
-                            if(containers[di][dj] != c) continue;
-                            
-                            containers[di][dj] = ' ';
-                            cnt++;   
-                        }
+            for(int i=1;i<=h;i++) {
+                for(int j=1;j<=w;j++) {
+                    if(willRemove[i][j]) {
+                        containers[i][j] = ' ';
+                        cnt++;
                     }
                 }
             }
