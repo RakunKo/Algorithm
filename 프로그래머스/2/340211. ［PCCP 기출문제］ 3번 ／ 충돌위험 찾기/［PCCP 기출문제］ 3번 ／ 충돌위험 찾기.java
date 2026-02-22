@@ -17,9 +17,7 @@ class Solution {
         int n = routes.length;
         int rc = routes[0].length;
         
-        int move = 1;
-        int[][] vis = new int[101][101];
-        boolean[][] crash = new boolean[101][101];
+        Map<String, Integer> crash = new HashMap<>();
         Pos[] robots = new Pos[n];
         for(int i=0;i<n;i++) {
             int start = routes[i][0];
@@ -28,19 +26,17 @@ class Solution {
             int y = points[start-1][1];
             robots[i] = new Pos(x, y, end, 1);
             
-            if(vis[x][y] == move && !crash[x][y]) {
-                crash[x][y] = true;
-                answer++;
-            }
-            vis[x][y] = move;
+            String key = x+":"+y;
+            crash.put(key, crash.getOrDefault(key, 0) + 1);
         }
         
-        //System.out.print(answer);
+        for(int cnt : crash.values()) {
+            if(cnt >= 2) answer++;
+        }
         
         int out = 0;
         while(out < n) {
-            move++;
-            crash = new boolean[101][101];
+            crash = new HashMap<>();
             
             //로봇별 움직임
             for(int i=0;i<n;i++) {
@@ -61,11 +57,8 @@ class Solution {
                 }
                 
                 // 충돌 확인
-                if(vis[afterX][afterY] == move && !crash[afterX][afterY]) {
-                    crash[afterX][afterY] = true;
-                    answer++;
-                }
-                vis[afterX][afterY] = move;
+                String key = afterX+":"+afterY;
+                crash.put(key, crash.getOrDefault(key, 0) + 1);
                 
                 // 목적지 도착
                 if(destX == afterX && destY == afterY) {
@@ -78,6 +71,9 @@ class Solution {
                 robots[i].y = afterY;
             }
             
+            for(int cnt : crash.values()) {
+                if(cnt >= 2) answer++;
+            }
             //for(int i=1;i<=8;i++) {
             //    for(int j=1;j<=8;j++) System.out.print(vis[i][j] + " ");
             //    System.out.print("\n");
