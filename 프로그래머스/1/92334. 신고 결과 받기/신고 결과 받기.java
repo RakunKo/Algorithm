@@ -10,6 +10,7 @@ class Solution {
         
         for(int i=0;i<id_list.length;i++) idx.put(id_list[i], i);
         
+        Set<String> ban = new HashSet<>();
         for(String r: report) {
             String[] user = r.split(" ");
             if(!users.getOrDefault(user[0], new HashSet<>()).contains(user[1])) {
@@ -19,11 +20,8 @@ class Solution {
             Set<String> set = users.getOrDefault(user[0], new HashSet<>());
             set.add(user[1]);
             users.put(user[0], set);
-        }
-        
-        Set<String> ban = new HashSet<>();
-        for(Map.Entry<String, Integer> e: status.entrySet()) {
-            if(e.getValue() >= k) ban.add(e.getKey());
+            
+            if(status.get(user[1]) >= k) ban.add(user[1]);
         }
         
         for(Map.Entry<String, Set<String>> e: users.entrySet()) {
