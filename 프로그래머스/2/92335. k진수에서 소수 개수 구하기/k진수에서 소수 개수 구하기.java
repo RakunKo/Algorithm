@@ -3,15 +3,10 @@ class Solution {
         int answer = 0;
         
         String target = toK(n, k);
-        int start = 0;
-        int end = 0;
+        String[] parts = target.split("0+");
         
-        while(end <= target.length()) {
-            if (end == target.length() || target.charAt(end) == '0') {
-                if (start < end && isPrime(target.substring(start, end))) answer++; 
-                start = end + 1;
-            }
-            end++;
+        for(String part: parts) {
+            if(isPrime(part)) answer++;
         }
         
         return answer;
