@@ -4,30 +4,26 @@ class Solution {
     public int[] solution(int[] sequence, int k) {
         int[] answer = new int[2];
         int answerCount = 1000001;
+        int n = sequence.length;
         
         int[] sum = new int[sequence.length + 1];
-        sum[0] = sequence[0];
-        for(int i=1;i<sequence.length;i++) sum[i] = sum[i-1] + sequence[i];
+        for (int i = 0; i < n; i++) sum[i + 1] = sum[i] + sequence[i];
         
-        // 1 3 6 10 15
-        // 1 2 3 5 8 12 17
+        // 0 1 3 6 10 15
+        // 0 1 2 3 5 8 12 17
         int start =0; int end =0;
-        while(end < sequence.length && start <= end) {
+        while(end < n && start <= end) {
+            int curr = sum[end+1] - sum[start]; 
             
-            if(sum[end] - sum[start] + sequence[start] < k) end++;
-            else if(sum[end] - sum[start] + sequence[start] > k) start++;
+            if(curr < k) end++;
+            else if(curr > k) start++;
             else {
                 //System.out.println(start + " "+end);
-                if(end-start < answerCount) {
-                    answerCount = end-start;
+                int currLen = end-start;
+                if(currLen < answerCount) {
+                    answerCount = currLen;
                     answer[0] = start;
                     answer[1] = end;
-                }else if(end-start == answerCount) {
-                    if(answer[0] > start + 1) {
-                        answerCount = end-start;
-                        answer[0] = start;
-                        answer[1] = end;
-                    }
                 }
                 start++;
             }
