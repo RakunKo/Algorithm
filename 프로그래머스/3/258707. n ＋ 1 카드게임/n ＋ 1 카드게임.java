@@ -2,8 +2,6 @@ import java.util.*;
 import java.lang.Math.*;
 
 class Solution {
-    boolean[] vis;
-    
     public int solution(int coin, int[] cards) {
         int n = cards.length;
         
@@ -13,7 +11,6 @@ class Solution {
         int idx = n/3;
         
         int round = 1;
-        vis = new boolean[n+1];
         while(idx < n) {
             possible.add(cards[idx++]);
             possible.add(cards[idx++]);
@@ -38,9 +35,8 @@ class Solution {
     
     public boolean canGoNext(Set<Integer> s1, Set<Integer> s2, int n) {
         for(Integer num: s1) {
-            if(vis[num]) continue;
             if(s2.contains(n+1-num)) {
-                vis[num] = true; vis[n+1-num] = true;
+                s1.remove(num); s2.remove(n+1-num);
                 return true;
             }
         }
