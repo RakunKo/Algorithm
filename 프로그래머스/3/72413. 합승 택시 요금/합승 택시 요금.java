@@ -23,45 +23,19 @@ class Solution {
             adj[fare[1]].add(new Node(fare[0], fare[2]));
         }
     
-        int[] acc_dist = accompany(s, a, b, n);
+        int[] distI = dijkstra(s, n);
+        int[] distA = dijkstra(a, n);
+        int[] distB = dijkstra(b, n);
         
         for(int i=1;i<=n;i++) {
-            if(acc_dist[i] == Integer.MAX_VALUE) continue;
-            if(acc_dist[i] >= answer) continue;
-            int[] home_dist = gohome(i, a, b, n);
-            
-            //for(int j=1;j<=n;j++) System.out.print(home_dist[j] + " ");
-            //System.out.print("\n");
-            
-            answer = Math.min(answer, home_dist[a] + home_dist[b] + acc_dist[i]);
+            if(distI[i] == Integer.MAX_VALUE || distA[i] == Integer.MAX_VALUE || distB[i] == Integer.MAX_VALUE) continue;
+            answer = Math.min(answer, distI[i] + distA[i] + distB[i]);
         }
         
         return answer;
     }
     
-    public int[] accompany(int s, int a, int b, int n) {
-        int[] dist = new int[n+1];
-        Arrays.fill(dist, Integer.MAX_VALUE);
-        
-        PriorityQueue<Node> pq = new PriorityQueue<>((a_v,b_v)->a_v.w-b_v.w);
-        pq.offer(new Node(s, 0));
-        dist[s] = 0;
-        
-        while(!pq.isEmpty()) {
-            Node curr = pq.poll();
-            
-            for(Node next: adj[curr.v]) {
-                if(dist[next.v] <= curr.w + next.w) continue;
-                
-                dist[next.v] = curr.w + next.w;
-                pq.offer(new Node(next.v, dist[next.v]));
-            }
-        }
-        
-        return dist;
-    }
-    
-    public int[] gohome(int s, int a, int b, int n) {
+    public int[] dijkstra(int s, int n) {
         int[] dist = new int[n+1];
         Arrays.fill(dist, Integer.MAX_VALUE);
         
