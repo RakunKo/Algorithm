@@ -39,7 +39,7 @@ class Solution {
         }
         
         vis[0][rx][ry] = true;
-        vis[1][bx][by] = false;
+        vis[1][bx][by] = true;
         dfs(0, rx, ry, bx, by, false, false, maze);
         
         if(answer == Integer.MAX_VALUE) return 0;
@@ -79,13 +79,13 @@ class Solution {
             if(dbx == t_bx && dby == t_by) t_blue = true;
 
             
-            vis[0][drx][dry] = true;
-            vis[1][dbx][dby] = true;
+            if (!red) vis[0][drx][dry] = true;
+            if (!blue) vis[1][dbx][dby] = true;
             
             dfs(trun+1, drx, dry, dbx, dby, t_red, t_blue, maze);
             
-            vis[0][drx][dry] = false;
-            vis[1][dbx][dby] = false;
+            if (!red) vis[0][drx][dry] = false;
+            if (!blue) vis[1][dbx][dby] = false;
         }
     }
     
