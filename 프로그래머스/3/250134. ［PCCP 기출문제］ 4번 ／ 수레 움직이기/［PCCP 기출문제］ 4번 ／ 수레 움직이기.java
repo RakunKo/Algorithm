@@ -48,7 +48,7 @@ class Solution {
     
     public void dfs(int trun, int rx, int ry, int bx, int by, boolean red, boolean blue, int[][] maze) {
         //System.out.println(rx +" "+ry+" "+bx+" "+by);
-        
+        if (trun >= answer) return;
         if(red && blue) {
             if(answer > trun) answer = trun;
             return;
@@ -79,13 +79,13 @@ class Solution {
             if(dbx == t_bx && dby == t_by) t_blue = true;
 
             
-            if (!red) vis[0][drx][dry] = true;
-            if (!blue) vis[1][dbx][dby] = true;
+            if (!t_red) vis[0][drx][dry] = true;
+            if (!t_blue) vis[1][dbx][dby] = true;
             
             dfs(trun+1, drx, dry, dbx, dby, t_red, t_blue, maze);
             
-            if (!red) vis[0][drx][dry] = false;
-            if (!blue) vis[1][dbx][dby] = false;
+            if (!t_red) vis[0][drx][dry] = false;
+            if (!t_blue) vis[1][dbx][dby] = false;
         }
     }
     
