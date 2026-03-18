@@ -1,6 +1,4 @@
 class Solution {
-    int MAX = 40001;
-    
     public String solution(String play_time, String adv_time, String[] logs) {
         int answer = 0;
         int n = to_second(play_time);
@@ -21,16 +19,17 @@ class Solution {
         
         long sum = 0;
         for(int i=0;i<adv;i++) sum += cnt[i]; 
+        answer = 0;
         
-        long max = 0;
-        for(int i=adv;i<=n;i++) {
-            if(max < sum) {
-                max = sum;
-                answer = i-adv;
-            }
-            
+        long max = sum;
+        for(int i=adv;i<=n;i++) {    
             sum -= cnt[i-adv];
             sum += cnt[i];
+            
+            if(max < sum) {
+                max = sum;
+                answer = i-adv+1;
+            }
         }
         
         return to_hour(answer);
